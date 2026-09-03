@@ -1847,11 +1847,11 @@ button {
   .nav nav { gap: 12px; font-size: 11px; }
   .brand { font-size: 11px; }
   .resume-pill { padding: 7px 9px; }
-  .hero { padding: 170px 20px 25px; min-height: 670px; }
-  .hero h1 { font-size: 25px; line-height: 1.5; }
-  .hero h1 .hero-badge { width: 36px; height: 64px; }
-  .hero p { font-size: 14px; }
-  .hero-cta { flex-direction: column; gap: 16px; }
+  .hero { padding: 100px 20px 25px; min-height: auto; }
+  .hero h1 { font-size: 32px; line-height: 1.45; margin-bottom: 24px; }
+  .hero h1 .hero-badge { display: none; }
+  .hero p { font-size: 14px; margin-bottom: 24px; }
+  .hero-cta { flex-direction: column; gap: 16px; margin-top: 8px; }
   .cta-doodle { display: none; }
   .brands { margin-top: 60px; gap: 14px; flex-wrap: wrap; font-size: 18px; }
   .brands-label, .brands-marquee { width: 100%; }
@@ -1864,9 +1864,11 @@ button {
   .project-list { margin: 0 16px; gap: 20px; }
   .project-card { width: 100%; height: auto; }
   .project-img { height: 280px; }
-  .project-info { padding: 20px; }
-  .project-info h3 { font-size: 22px; }
-  .tags { justify-content: flex-start; margin-top: 14px; max-width: none; }
+  .project-info { padding: 16px; }
+  .project-info h3 { font-size: 20px; margin-bottom: 8px; }
+  .project-info p { font-size: 13px; line-height: 1.5; margin-bottom: 12px; }
+  .tags { justify-content: flex-start; margin-top: 14px; max-width: none; gap: 6px; }
+  .tags i { padding: 6px 12px; font-size: 12px; white-space: nowrap; }
   .about-preview, .skills, .about-hero, .about-block, .contact { grid-template-columns: 1fr; gap: 35px; }
   .about-preview { gap: 16px; padding: 0 16px; }
   .about-preview-heading { font-size: 24px; line-height: 1.35; margin-bottom: 20px; }
@@ -1915,20 +1917,20 @@ button {
   .marketly { padding-top: 180px; }
   .marketly h1 { font-size: 45px; }
   .marketly p { font-size: 15px; }
-  .hero-content { padding-top: 56px; }
+  .hero-content { padding-top: 32px; }
   .sweep-tb.two, .sweep-bt.two { display: none; }
 }
 
 @media (max-width: 480px) {
   .nav nav { gap: 16px; font-size: 12px; }
   .resume-pill { padding: 6px 8px; font-size: 12px; }
-  .hero h1 { font-size: 22px; line-height: 1.35; }
+  .hero h1 { font-size: 28px; line-height: 1.4; }
   .hero-line:first-child { white-space: normal; }
-  .hero h1 .hero-badge { bottom: .4em; width: 32px; height: 56px; margin: 0 .1em; }
+  .hero h1 .hero-badge { display: none; }
   .hero-cta { flex-direction: column; width: 100%; }
   .cta-wrapper { width: 100%; max-width: 280px; }
   .cta-wrapper .cta { width: 100%; justify-content: center; padding: 14px 16px; }
-  .upwork-btn { width: 100%; max-width: 280px; justify-content: center; padding: 14px 16px; }
+  .upwork-btn { width: 100%; max-width: 240px; justify-content: center; padding: 10px 16px; font-size: 14px; }
   .featured h2, .page-head h1 { font-size: 22px; }
   .about-preview-heading { font-size: 22px; }
   .about-preview-content-head h2 { font-size: 22px; }
@@ -1949,7 +1951,7 @@ button {
   .statement p { font-size: 22px; }
   .case-hero h1 { font-size: 32px; }
   .marketly h1 { font-size: 36px; }
-  .hero-content { padding-top: 0px; }
+  .hero-content { padding-top: 20px; }
 }
 
 @media (prefers-reduced-motion: reduce) {
