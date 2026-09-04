@@ -946,6 +946,7 @@ html.hover-active .custom-cursor {
 .skills {
   display: flex;
   flex-direction: column;
+  overflow: hidden;
 }
 
 .skills-header {
@@ -957,18 +958,21 @@ html.hover-active .custom-cursor {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 24px;
+  min-width: 0;
 }
 
 .skills-column:first-child {
   display: grid;
   grid-template-rows: 1fr 158px;
   gap: 24px;
+  min-width: 0;
 }
 
 .skills-column:last-child {
   display: grid;
   grid-template-rows: 158px 1fr;
   gap: 24px;
+  min-width: 0;
 }
 
 .skill-card {
@@ -980,6 +984,9 @@ html.hover-active .custom-cursor {
   overflow: hidden;
   position: relative;
   box-shadow: rgba(184, 180, 180, 0.08) 0px 2px 0px 0px inset;
+  min-width: 0;
+  width: 100%;
+  box-sizing: border-box;
 }
 
 .skill-card-heading {
@@ -1035,9 +1042,10 @@ html.hover-active .custom-cursor {
   margin-top: 20px;
   border-radius: 12px;
   overflow: hidden;
-  height: 220px;
+  height: 180px;
   flex-shrink: 0;
   background: #1a1a2e;
+  min-width: 0;
 }
 
 .skill-marquee-track {
@@ -1983,7 +1991,7 @@ button {
   .skills-bento { grid-template-columns: 1fr; }
   .skills-column:first-child,
   .skills-column:last-child { display: flex; flex-direction: column; gap: 24px; }
-  .skill-card { padding: 24px; }
+  .skill-card { padding: 24px; height: auto !important; }
   .skill-card-image { height: 180px; }
   .skill-card-marquee { height: 180px; }
   .skill-marquee-logo { width: 200px; height: 140px; }
@@ -2045,6 +2053,13 @@ button {
   .process-card-num { font-size: 22px; }
   .process-card-desc { font-size: 13px; }
   .process h2 { font-size: 30px; }
+  .skills-header { margin-bottom: 32px; }
+  .skill-card { padding: 20px; }
+  .skill-card-content h3 { font-size: 19px; }
+  .skill-card-content p { font-size: 14px; line-height: 1.5; }
+  .skill-card-image { height: 150px; }
+  .skill-card-marquee { height: 150px; }
+  .skill-marquee-logo { width: 160px; height: 110px; }
   .timeline { grid-template-columns: 1fr; }
   .about-hero-photo { height: 350px; border-radius: 120px 120px 12px 12px; }
   .statement p { font-size: 22px; }
