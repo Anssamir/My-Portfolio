@@ -21,7 +21,7 @@ function ProcessCard({ num, title, description, svgContent }: { num: string; tit
 const cards = [
   {
     num: '1',
-    title: 'Frame It Before You Flame It',
+    title: 'Understand the problem',
     description: 'No pixel-pushing till I know the game. I ask the "dumb" questions (What?), poke holes in assumptions (Why?), and map out the real deal (Who?). Because the wrong problem solved beautifully is still the wrong problem.',
     icon: (
       <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
@@ -31,8 +31,8 @@ const cards = [
   },
   {
     num: '2',
-    title: 'Low-Fi, High Impact',
-    description: 'Paper first, pixels second. Quick sketches and rough wireframes let me explore 10 ideas in the time it takes to polish one. Fast feedback loops mean fewer costly revisions later.',
+    title: 'Design the solution',
+    description: 'With the problem clear, I turn insights into a thoughtful product experience. I map out flows, structure information, and craft interfaces that balance usability, visual clarity, and the goals of the business.',
     icon: (
       <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
         <line x1="8" y1="6" x2="21" y2="6" />
@@ -46,8 +46,8 @@ const cards = [
   },
   {
     num: '3',
-    title: 'Human-first. Dev ready!',
-    description: 'Pretty isn\'t enough. My files don\'t just look good, they work. Named layers, scalable systems, edge-case checks — so devs don\'t curse my name when it\'s build time.',
+    title: 'Build the Product & Test',
+    description: 'Pretty isn\'t enough. My files don\'t just look good, they work. I don’t stop at handing over designs. I bring the experience to life through development, translating the details from design into a responsive, functional product while keeping the original vision intact.',
     icon: (
       <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
         <path d="M12 19l7-7 3 3-7 7-3-3z" />
@@ -59,7 +59,7 @@ const cards = [
   },
   {
     num: '4',
-    title: 'Ship. Learn. Evolve.',
+    title: 'Ship, Learn & Refine',
     description: 'No design is ever "done." I launch, I listen, I loop back. Real users teach me more than any Dribbble likes ever will.',
     icon: (
       <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
@@ -76,7 +76,7 @@ export function Process() {
   return (
     <section className="process section">
       <div className="eyebrow">How it works</div>
-      <h2>How I Design With Purpose</h2>
+      <h2>How I Think, Design & Build</h2>
       <p>Smart, scrappy, and always human-first.</p>
       <div className="process-cards">
         {cards.map((card, i) => (
@@ -87,7 +87,6 @@ export function Process() {
       </div>
       <div className="process-banner">
         <div className="process-banner-text">
-          <span className="process-banner-emoji">&#x1F60A;</span>
           <div>
             <strong>I am with you in every step</strong>
             <br />

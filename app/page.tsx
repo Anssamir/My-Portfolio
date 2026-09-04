@@ -31,12 +31,12 @@ export default function Home() {
         <div className="hero-content">
           <h1>
             <span className="hero-line">
-              I turn ideas into <span className="hero-badge"><img src="/portrait-me.png" alt="" width={54} height={110} /></span> experiences
+              I design and build <span className="hero-badge"><img src="/portrait-me.png" alt="" width={54} height={110} /></span> products
             </span>
             <span className="hero-line">people actually love to use</span>
           </h1>
           <p className="hero-intro">
-            Hey, I&apos;m Anas Amir &#x1F44B; A UI/UX Designer turning complex ideas into simple, intuitive experiences.
+            Hey, I&apos;m Anas Amir &#x1F44B; A Product Designer & Developer taking rough ideas to polished, production-ready experiences.
           </p>
           <div className="hero-cta">
             <CTA />
@@ -44,7 +44,7 @@ export default function Home() {
           </div>
         </div>
         <div className="brands">
-          <span className="brands-label">Brands I&apos;ve Designed For</span>
+          <span className="brands-label">Brands I&apos;ve worked with</span>
           <div className="brands-marquee" aria-label="Brands I've Designed For">
             <div className="brands-track">
               <b>House of Stox</b>
