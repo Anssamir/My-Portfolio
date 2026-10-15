@@ -31,12 +31,12 @@ export default function Home() {
         <div className="hero-content">
           <h1>
             <span className="hero-line">
-              I design and build <span className="hero-badge"><img src="/portrait-me.png" alt="" width={54} height={110} /></span> products
+              I turn ideas into intelligent <span className="hero-badge"><img src="/portrait-me.png" alt="" width={54} height={110} /></span> products
             </span>
-            <span className="hero-line">people actually love to use</span>
+            <span className="hero-line">people actually love to use.</span>
           </h1>
           <p className="hero-intro">
-            Hey, I&apos;m Anas Amir &#x1F44B; A Product Designer & Developer taking rough ideas to polished, production-ready experiences.
+            Hey, I&apos;m Anas Amir &#x1F44B; An AI Product Engineer turning rough ideas into intelligent, production-ready products.
           </p>
           <div className="hero-cta">
             <CTA />
@@ -68,7 +68,7 @@ export default function Home() {
       </section>
       <section id="featured-work" className="section featured">
         <div className="eyebrow">Featured Work</div>
-        <h2>Like food, great design is invisible<br />when it works perfectly.</h2>
+        <h2>Turning AI complexity into products people actually understand.</h2>
         <div className="project-list">
           {projects.map((p, i) => (
             <ProjectCard p={p} index={i} key={p.slug} />
