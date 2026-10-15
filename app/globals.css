@@ -668,7 +668,7 @@ html.hover-active .custom-cursor {
   display: grid;
   grid-template-columns: 0.6fr 1fr;
   gap: 50px 40px;
-  align-items: center;
+  align-items: start;
   padding-left: 0;
   padding-right: 0;
 }
@@ -721,6 +721,10 @@ html.hover-active .custom-cursor {
   color: #1c1c1a;
 }
 
+.about-preview-content-body {
+  padding-left: 16px;
+}
+
 .about-preview-content-body p {
   font-size: 17px;
   line-height: 1.65;
@@ -743,14 +747,25 @@ html.hover-active .custom-cursor {
   font-style: italic;
   color: #26262a;
   margin: 0;
-  padding-left: 16px;
-  border-left: 3px solid var(--lime);
+  padding-left: 0px;
   line-height: 1.5;
+  position: relative;
+}
+
+.about-preview-quote::before {
+  content: "";
+  position: absolute;
+  left: -24;
+  top: 0;
+  bottom: 0;
+  width: 3px;
+  background: var(--lime);
 }
 
 .about-preview-cta {
   margin-top: 8px;
   width: fit-content;
+
 }
 
 .process h2,
@@ -1403,6 +1418,7 @@ html.hover-active .custom-cursor {
   font-size: 16px;
   margin-top: 0;
   width: fit-content;
+  margin-left: 16px;
 }
 
 .about-accent {
