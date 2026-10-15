@@ -8,4 +8,8 @@ export const assets: Record<string, string> = {
   loreal: img('hhclzF6desw7KRd4g4TcWgGZu6I.png', '?width=2048&height=1366'),
   marketly: img('WZjYOMw9rqOtCDei9bsvUfrcjI.png', '?width=2048&height=1366'),
   about: img('Xvd6TJPVazOh8gTZm3JCk8VWA7U.png', '?scale-down-to=2048&width=3375&height=3375'),
+  uiuxDesign: '/UI:UX Design.png',
+  agentIcon: '/Agent icon.png',
+  devIcon: '/dev icon.png',
+  bulbIcon: '/bulb icon.png',
 };
