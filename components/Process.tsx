@@ -76,7 +76,7 @@ export function Process() {
   return (
     <section className="process section">
       <div className="eyebrow">How it works</div>
-      <h2>How I Think, Design & Build</h2>
+      <h2>How I Think, Engineer & Ship Products</h2>
       <p>Smart, scrappy, and always human-first.</p>
       <div className="process-cards">
         {cards.map((card, i) => (
