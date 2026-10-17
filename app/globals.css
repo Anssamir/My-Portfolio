@@ -1098,16 +1098,56 @@ html.hover-active .custom-cursor {
   }
 }
 
-.marquee {
-  padding: 25px 0;
-  border-top: 1px solid #ddd;
-  border-bottom: 1px solid #ddd;
-  white-space: nowrap;
+.skills-capsules {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  width: 100%;
+  margin-top: 36px;
   overflow: hidden;
-  font-size: 25px;
-  font-weight: 700;
-  color: #848b96;
-  text-overflow: ellipsis;
+  -webkit-mask-image: linear-gradient(90deg, transparent 0, #000 7%, #000 93%, transparent 100%);
+  mask-image: linear-gradient(90deg, transparent 0, #000 7%, #000 93%, transparent 100%);
+}
+
+.skills-capsules-row {
+  overflow: hidden;
+}
+
+.skills-capsules-track {
+  display: flex;
+  width: max-content;
+  will-change: transform;
+  animation: skillsCapsulesScroll 30s linear infinite;
+}
+
+.skills-capsules-track.reverse {
+  animation-direction: reverse;
+}
+
+/* margin (not flex gap) keeps each item's footprint uniform so the loop is seamless */
+.skills-capsule {
+  display: block;
+  flex-shrink: 0;
+  height: 46px;
+  margin-right: 12px;
+  line-height: 0;
+}
+
+.skills-capsule img {
+  display: block;
+  height: 100%;
+  width: auto;
+}
+
+@keyframes skillsCapsulesScroll {
+  from {
+    transform: translateX(0);
+  }
+
+  /* 100% / 4 repeats = one group; the next copy lands exactly where this one started */
+  to {
+    transform: translateX(-25%);
+  }
 }
 
 /* =============================================================================
@@ -2443,6 +2483,16 @@ button {
     height: 140px;
   }
 
+  .skills-capsules {
+    gap: 9px;
+    margin-top: 24px;
+  }
+
+  .skills-capsule {
+    height: 38px;
+    margin-right: 9px;
+  }
+
   .timeline {
     grid-template-columns: 1fr 1fr;
   }
@@ -2771,5 +2821,9 @@ button {
 
   .hero-scroll {
     transform: translateX(-50%) !important;
+  }
+
+  .skills-capsules-track {
+    animation: none !important;
   }
 }

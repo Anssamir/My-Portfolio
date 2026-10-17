@@ -32,6 +32,45 @@ const logos = [
   { name: 'Logo 7', src: 'https://framerusercontent.com/images/gnTrKxXvJ0LzwoQHXt5PQbcgwg.png?scale-down-to=2048&width=3840&height=2160' },
 ];
 
+const capsule = (file: string, name: string) => ({
+  name,
+  src: `/Skills%20Svgs/${file}`,
+});
+
+// Two rows marquee in opposite directions beneath the bento grid.
+const capsuleRowOne = [
+  capsule('AI%20Agent%20Capsule.svg', 'AI Agents'),
+  capsule('Product%20Design%20Capsule.svg', 'Product Design'),
+  capsule('UI%3AUX%20Design%20Capsule.svg', 'UI/UX Design'),
+  capsule('Web%20Development%20Capsule.svg', 'Web Development'),
+];
+
+const capsuleRowTwo = [
+  capsule('AI%20Solutions%20Capsule.svg', 'AI Solutions'),
+  capsule('N8N%20Agents%20Capsule.svg', 'N8N Agents'),
+  capsule('Prototyping%20Capsule.svg', 'Prototyping'),
+  capsule('User%20Research%20Capsule.svg', 'User Research'),
+];
+
+// Each row repeats the group so the track always overflows the section width,
+// then scrolls by exactly one group (-100% / CAPSULE_REPEATS) for a seamless loop.
+const CAPSULE_REPEATS = 4;
+
+function CapsuleRow({ items, reverse }: { items: { name: string; src: string }[]; reverse?: boolean }) {
+  const loop = Array.from({ length: CAPSULE_REPEATS }, () => items).flat();
+  return (
+    <div className="skills-capsules-row">
+      <div className={`skills-capsules-track${reverse ? ' reverse' : ''}`}>
+        {loop.map((c, i) => (
+          <span className="skills-capsule" key={`${c.name}-${i}`} aria-hidden={i >= items.length}>
+            <img src={c.src} alt={i >= items.length ? '' : c.name} />
+          </span>
+        ))}
+      </div>
+    </div>
+  );
+}
+
 export function Skills() {
   return (
     <section className="skills section">
@@ -93,8 +132,9 @@ export function Skills() {
           </article>
         </div>
       </div>
-      <div className="marquee">
-        User Research &#x00B7; Prototyping &#x00B7; Interaction Design &#x00B7; Branding &#x00B7; Custom Code &#x00B7; Framer &#x00B7; Design thinking &#x00B7; Visual Design &#x00B7;
+      <div className="skills-capsules">
+        <CapsuleRow items={capsuleRowOne} />
+        <CapsuleRow items={capsuleRowTwo} reverse />
       </div>
     </section>
   );
