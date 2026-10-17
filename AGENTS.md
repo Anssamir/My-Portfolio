@@ -50,6 +50,7 @@ Personal portfolio site for Anas Amir (designer / AI product engineer). A static
 
 - `app/globals.css` (~2,800 lines of hand-written CSS) is the source of truth. **Do not assume utility-first Tailwind** — match the existing class names and add plain CSS rules, following the file's section/comment structure.
 - Design tokens: `--ink #0b1d38`, `--lime #dcffa2`, `--paper #fcfcfa`, `--gray #e8e8e5`.
+- **Spacing system:** use the tokens in `:root` — scale `--space-2xs`…`--space-3xl` and semantic rhythm tokens `--gutter`, `--content-max`, `--gap-eyebrow` (eyebrow→heading), `--gap-heading` (heading→content), `--gap-block`, `--gap-tight`, `--section-y`, `--page-top`. Don't hardcode section/heading spacing; the `≤720px` block re-defines these tokens for mobile. Full-bleed sections use `max(var(--gutter), calc((100% - var(--content-max)) / 2))`.
 - Fonts: Inter via `next/font` in `layout.tsx`, plus Google font imports at the top of `globals.css`.
 - Infinite marquees use a duplicated track animated with `translateX` and uniform `margin-right` (not flex `gap`) so the loop is seamless. Keep this pattern if editing marquees.
 

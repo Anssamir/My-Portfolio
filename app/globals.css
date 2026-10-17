@@ -21,6 +21,29 @@
   --lime: #dcffa2;
   --paper: #fcfcfa;
   --gray: #e8e8e5;
+
+  /* ===========================================================================
+     SPACING SYSTEM
+     Base scale (4 / 8 based). Use these instead of raw pixel values for rhythm.
+     =========================================================================== */
+  --space-2xs: 8px;
+  --space-xs: 12px;
+  --space-sm: 16px;
+  --space-md: 24px;
+  --space-lg: 32px;
+  --space-xl: 48px;
+  --space-2xl: 64px;
+  --space-3xl: 96px;
+
+  /* Semantic rhythm tokens (desktop values; overridden for mobile below) */
+  --gutter: var(--space-lg);        /* horizontal page padding */
+  --content-max: 1056px;            /* width of content inside .section (1120 - 2*gutter) */
+  --gap-eyebrow: var(--space-md);   /* eyebrow -> section heading */
+  --gap-heading: var(--space-xl);   /* section heading -> content */
+  --gap-block: var(--space-lg);     /* content block -> content block (within a section) */
+  --gap-tight: var(--space-md);     /* tightly-related blocks (e.g. bento -> capsule rows) */
+  --section-y: var(--space-xl);     /* vertical padding of a .section */
+  --page-top: 200px;                /* top padding on the first section of a page (clears fixed nav) */
 }
 
 * {
@@ -506,7 +529,7 @@ html.hover-active .custom-cursor {
 .section {
   max-width: 1120px;
   margin: auto;
-  padding: 48px 32px;
+  padding: var(--section-y) var(--gutter);
 }
 
 .eyebrow {
@@ -515,7 +538,7 @@ html.hover-active .custom-cursor {
   gap: 8px;
   width: fit-content;
   max-width: 100%;
-  margin: 0 auto 24px;
+  margin: 0 auto var(--gap-eyebrow);
   padding: 7px 16px 7px 12px;
   background: #fff;
   color: var(--ink);
@@ -557,7 +580,7 @@ html.hover-active .custom-cursor {
   font-family: 'Manrope', sans-serif;
   font-weight: 400;
   letter-spacing: 0px;
-  margin: 0 auto 50px;
+  margin: 0 auto var(--gap-heading);
   text-align: center;
 }
 
@@ -680,7 +703,7 @@ html.hover-active .custom-cursor {
   font-weight: 400;
   letter-spacing: 0px;
   line-height: 1.25;
-  margin: 0 auto 50px;
+  margin: 0 auto var(--gap-heading);
   text-align: center;
 }
 
@@ -777,7 +800,7 @@ html.hover-active .custom-cursor {
   font-size: 45px;
   letter-spacing: 0px;
   line-height: 1.25;
-  margin: 0 0 20px;
+  margin: 0 0 var(--gap-heading);
 }
 
 .about-preview p,
@@ -816,19 +839,19 @@ html.hover-active .custom-cursor {
   font-size: 52px;
   letter-spacing: -1.5px;
   line-height: 1.15;
-  margin: 0 0 16px;
+  margin: 0 0 var(--space-sm);
 }
 
 .process>p {
   color: #4a7c59;
   font-size: 17px;
-  margin: 0 auto 60px;
+  margin: 0 auto var(--gap-heading);
 }
 
 .process-cards {
   display: flex;
   gap: 0;
-  margin-bottom: 112px;
+  margin-bottom: var(--space-3xl);
   height: 320px;
   overflow: visible;
 }
@@ -966,7 +989,7 @@ html.hover-active .custom-cursor {
 
 .skills-header {
   text-align: center;
-  margin-bottom: 48px;
+  margin-bottom: var(--gap-heading);
 }
 
 .skills-bento {
@@ -1101,9 +1124,9 @@ html.hover-active .custom-cursor {
 .skills-capsules {
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: var(--space-xs);
   width: 100%;
-  margin-top: 36px;
+  margin-top: var(--gap-tight);
   overflow: hidden;
   -webkit-mask-image: linear-gradient(90deg, transparent 0, #000 7%, #000 93%, transparent 100%);
   mask-image: linear-gradient(90deg, transparent 0, #000 7%, #000 93%, transparent 100%);
@@ -1129,7 +1152,7 @@ html.hover-active .custom-cursor {
   display: block;
   flex-shrink: 0;
   height: 46px;
-  margin-right: 12px;
+  margin-right: var(--space-xs);
   line-height: 0;
 }
 
@@ -1157,12 +1180,12 @@ html.hover-active .custom-cursor {
 .journey {
   background: #f1f4ee;
   max-width: none;
-  padding-left: max(32px, calc((100% - 1056px) / 2));
-  padding-right: max(32px, calc((100% - 1056px) / 2));
+  padding-left: max(var(--gutter), calc((100% - var(--content-max)) / 2));
+  padding-right: max(var(--gutter), calc((100% - var(--content-max)) / 2));
 }
 
 .timeline {
-  margin-top: 50px;
+  margin-top: 0;
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: 20px;
@@ -1198,7 +1221,7 @@ html.hover-active .custom-cursor {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  padding: 56px max(32px, calc((100% - 1056px) / 2)) 0;
+  padding: 56px max(var(--gutter), calc((100% - var(--content-max)) / 2)) 0;
 }
 
 .footer-top {
@@ -1344,7 +1367,7 @@ html.hover-active .custom-cursor {
    ============================================================================= */
 
 .page-head {
-  padding: 210px max(32px, calc((100% - 1056px) / 2)) 50px;
+  padding: var(--page-top) max(var(--gutter), calc((100% - var(--content-max)) / 2)) var(--section-y);
   background: #f3f3f0;
 }
 
@@ -1355,14 +1378,14 @@ html.hover-active .custom-cursor {
 }
 
 .work-list {
-  padding-top: 75px;
+  padding-top: 0;
 }
 
 .explore {
   background: var(--lime);
   max-width: none;
-  padding-left: max(32px, calc((100% - 1056px) / 2));
-  padding-right: max(32px, calc((100% - 1056px) / 2));
+  padding-left: max(var(--gutter), calc((100% - var(--content-max)) / 2));
+  padding-right: max(var(--gutter), calc((100% - var(--content-max)) / 2));
 }
 
 .explore h2 {
@@ -1376,7 +1399,7 @@ html.hover-active .custom-cursor {
    ============================================================================= */
 
 .about-hero {
-  padding-top: 200px;
+  padding-top: var(--page-top);
   display: grid;
   grid-template-columns: 1.1fr 0.9fr;
   gap: 80px;
@@ -1492,7 +1515,7 @@ html.hover-active .custom-cursor {
 .statement {
   background: var(--ink);
   color: var(--lime);
-  padding: 120px 30px;
+  padding: var(--space-3xl) var(--gutter);
   text-align: center;
 }
 
@@ -1532,8 +1555,8 @@ html.hover-active .custom-cursor {
 .about-block.reverse {
   background: #f2f2ef;
   max-width: none;
-  padding-left: max(32px, calc((100% - 1056px) / 2));
-  padding-right: max(32px, calc((100% - 1056px) / 2));
+  padding-left: max(var(--gutter), calc((100% - var(--content-max)) / 2));
+  padding-right: max(var(--gutter), calc((100% - var(--content-max)) / 2));
 }
 
 /* =============================================================================
@@ -1541,7 +1564,7 @@ html.hover-active .custom-cursor {
    ============================================================================= */
 
 .resume {
-  padding-top: 200px;
+  padding-top: var(--page-top);
 }
 
 .resume>p {
@@ -1550,7 +1573,7 @@ html.hover-active .custom-cursor {
 }
 
 .resume-list {
-  margin: 50px 0;
+  margin: var(--gap-block) 0;
 }
 
 .resume-list article {
@@ -1595,21 +1618,25 @@ html.hover-active .custom-cursor {
    ============================================================================= */
 
 .contact {
-  padding-top: 190px;
+  padding-top: var(--page-top);
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 100px;
 }
 
+.contact h1 {
+  margin-bottom: var(--space-sm);
+}
+
 .contact h3 {
   font-size: 17px;
-  margin-top: -10px;
+  margin: 0;
 }
 
 .contact-info {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  margin-top: 60px;
+  margin-top: var(--gap-heading);
 }
 
 .contact-info small {
@@ -1679,7 +1706,7 @@ button {
   flex-direction: column;
   justify-content: flex-end;
   align-items: flex-start;
-  padding: 120px max(32px, calc((100% - 1056px) / 2));
+  padding: var(--space-3xl) max(var(--gutter), calc((100% - var(--content-max)) / 2));
   color: #fff;
 }
 
@@ -1712,7 +1739,7 @@ button {
 }
 
 .case-intro {
-  padding-top: 85px;
+  padding-top: var(--section-y);
 }
 
 .case-intro>p {
@@ -1726,9 +1753,9 @@ button {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 100px;
-  margin-top: 65px;
+  margin-top: var(--gap-heading);
   border-top: 1px solid #d3d6d3;
-  padding-top: 25px;
+  padding-top: var(--space-md);
 }
 
 .case-columns b {
@@ -1755,7 +1782,7 @@ button {
   grid-template-columns: 1fr 1fr;
   align-items: center;
   gap: 100px;
-  padding: 90px max(32px, calc((100% - 1056px) / 2));
+  padding: var(--space-3xl) max(var(--gutter), calc((100% - var(--content-max)) / 2));
 }
 
 .case-body article>div {
@@ -1793,7 +1820,7 @@ button {
 }
 
 .marketly {
-  padding-top: 220px;
+  padding-top: var(--page-top);
   min-height: 900px;
   background: linear-gradient(#fff9, #fff), url('https://framerusercontent.com/images/zN1IdkLFyim0N3ihDRdd8kAzc.png?width=5760&height=3240') center / cover;
 }
@@ -2197,6 +2224,15 @@ button {
 }
 
 @media (max-width: 720px) {
+  :root {
+    --gutter: var(--space-sm);
+    --gap-heading: var(--space-lg);
+    --gap-block: var(--space-md);
+    --gap-tight: var(--space-xs);
+    --section-y: var(--space-lg);
+    --page-top: 160px;
+  }
+
   .nav {
     top: 12px;
     width: calc(100% - 24px);
@@ -2283,13 +2319,13 @@ button {
   }
 
   .section {
-    padding: 32px 16px;
+    padding: var(--section-y) var(--gutter);
   }
 
   .featured h2,
   .page-head h1 {
     font-size: 24px;
-    margin-bottom: 35px;
+    margin-bottom: var(--gap-heading);
     line-height: 1.3;
   }
 
@@ -2345,14 +2381,14 @@ button {
   }
 
   .about-preview {
-    gap: 16px;
-    padding: 32px 16px;
+    gap: var(--space-sm);
+    padding: var(--section-y) var(--gutter);
   }
 
   .about-preview-heading {
     font-size: 24px;
     line-height: 1.35;
-    margin-bottom: 20px;
+    margin-bottom: var(--gap-heading);
   }
 
   .about-preview-photo {
@@ -2399,9 +2435,9 @@ button {
   .process-cards {
     flex-wrap: wrap;
     justify-content: center;
-    gap: 16px;
+    gap: var(--space-sm);
     height: auto;
-    margin-bottom: 60px;
+    margin-bottom: var(--space-2xl);
   }
 
   .offset {
@@ -2484,13 +2520,12 @@ button {
   }
 
   .skills-capsules {
-    gap: 8px;
-    margin-top: 12px;
+    gap: var(--space-2xs);
   }
 
   .skills-capsule {
     height: 38px;
-    margin-right: 9px;
+    margin-right: var(--space-2xs);
   }
 
   .timeline {
@@ -2498,7 +2533,7 @@ button {
   }
 
   .footer {
-    padding: 32px 16px 40px;
+    padding: var(--space-lg) var(--gutter) 40px;
   }
 
   .footer-copy p {
@@ -2513,11 +2548,11 @@ button {
   }
 
   .page-head {
-    padding: 150px 16px 50px;
+    padding: var(--page-top) var(--gutter) var(--section-y);
   }
 
   .about-hero {
-    padding-top: 155px;
+    padding-top: var(--page-top);
     gap: 35px;
   }
 
@@ -2553,7 +2588,7 @@ button {
   }
 
   .statement {
-    padding: 80px 16px;
+    padding: var(--space-2xl) var(--gutter);
   }
 
   .statement p {
@@ -2561,8 +2596,8 @@ button {
   }
 
   .about-block.reverse {
-    padding-left: 16px;
-    padding-right: 16px;
+    padding-left: var(--gutter);
+    padding-right: var(--gutter);
   }
 
   .about-block img {
@@ -2570,16 +2605,16 @@ button {
   }
 
   .resume {
-    padding-top: 160px;
+    padding-top: var(--page-top);
   }
 
   .contact {
-    padding-top: 160px;
+    padding-top: var(--page-top);
   }
 
   .case-hero {
     height: 570px;
-    padding: 100px 16px 55px;
+    padding: 100px var(--gutter) 55px;
   }
 
   .case-hero h1 {
@@ -2597,7 +2632,7 @@ button {
   }
 
   .case-body article {
-    padding: 70px 16px;
+    padding: 70px var(--gutter);
     min-height: 0;
   }
 
@@ -2606,7 +2641,7 @@ button {
   }
 
   .marketly {
-    padding-top: 180px;
+    padding-top: var(--page-top);
   }
 
   .marketly h1 {
@@ -2750,7 +2785,7 @@ button {
   }
 
   .skills-header {
-    margin-bottom: 32px;
+    margin-bottom: var(--gap-heading);
   }
 
   .skill-card {
