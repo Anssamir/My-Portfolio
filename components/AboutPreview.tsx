@@ -9,7 +9,7 @@ export function AboutPreview() {
     <section className="about-preview section">
       <div className="about-preview-header">
         <div className="eyebrow">About Me</div>
-        <h2 className="about-preview-heading reveal">I care deeply about how it feel, how it works <br /> not just how they look.</h2>
+        <h2 className="about-preview-heading reveal">I care about how it feels,<br /> not just how it looks.</h2>
       </div>
       <div className="about-preview-photo reveal">
         <Image src={assets.aboutImage} alt="Anas Amir" fill sizes="440px" style={{ objectFit: 'cover', objectPosition: 'center top' }} />

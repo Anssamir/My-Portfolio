@@ -31,9 +31,9 @@ export default function Home() {
         <div className="hero-content">
           <h1>
             <span className="hero-line">
-              I turn ideas into intelligent <span className="hero-badge"><img src="/portrait-me.png" alt="" width={54} height={110} /></span> products
+              I turn ideas into <span className="hero-badge"><img src="/portrait-me.png" alt="" width={54} height={110} /></span> intelligent
             </span>
-            <span className="hero-line">people actually love to use.</span>
+            <span className="hero-line">products people love.</span>
           </h1>
           <p className="hero-intro">
             Hey, I&apos;m Anas Amir &#x1F44B; An AI Product Engineer turning rough ideas into intelligent, production-ready products.
