@@ -4,7 +4,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { useReveal } from '@/hooks/useReveal';
 import { assets } from '@/data/assets';
-import { Journey } from '@/components/Journey';
+import { Testimonials } from '@/components/Testimonials';
 import { Footer } from '@/components/Footer';
 
 export function AboutContent() {
@@ -59,7 +59,7 @@ export function AboutContent() {
         <Image src={assets.nissan} alt="Cooking &amp; Design Analogy" width={500} height={410} style={{ objectFit: 'cover', borderRadius: 8 }} />
       </section>
 
-      <Journey />
+      <Testimonials />
       <Footer />
     </main>
   );
