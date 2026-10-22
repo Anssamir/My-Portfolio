@@ -36,7 +36,7 @@ Personal portfolio site for Anas Amir (designer / AI product engineer). A static
   - `app/projects/[slug]/` → `ProjectContent.tsx` (+ `generateMetadata`)
   - `app/contact/page.tsx`, `app/resume/page.tsx` — server, static content
 - `app/layout.tsx` → `app/ClientProviders.tsx` (client) mounts `<CustomCursor>`, `<CustomHoverCursor>`, `<Header>`, and scrolls to top on every route change.
-- `components/` — presentational components (Header, Footer, ProjectCard, CaseBody, Process, Skills, Journey, AboutPreview, CTA, UpworkButton, CustomCursor, CustomHoverCursor). `GridBackground.tsx` exists but is **unused**.
+- `components/` — presentational components (Header, Footer, ProjectCard, CaseBody, Process, Skills, Testimonials, AboutPreview, CTA, UpworkButton, CustomCursor, CustomHoverCursor). `GridBackground.tsx` exists but is **unused**.
 - `hooks/useReveal.ts` — IntersectionObserver hook; adds `.show` to `.reveal` elements as they enter the viewport. Attach its ref to a `<main>` and mark animated blocks with `className="reveal"`.
 - `data/projects.ts` — the `Project` interface and the project list (drives the home grid + work page). `data/assets.ts` — image path/URL map.
 

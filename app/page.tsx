@@ -8,7 +8,7 @@ import { ProjectCard } from '@/components/ProjectCard';
 import { AboutPreview } from '@/components/AboutPreview';
 import { Process } from '@/components/Process';
 import { Skills } from '@/components/Skills';
-import { Journey } from '@/components/Journey';
+import { Testimonials } from '@/components/Testimonials';
 import { Footer } from '@/components/Footer';
 
 export default function Home() {
@@ -78,7 +78,7 @@ export default function Home() {
       <AboutPreview />
       <Process />
       <Skills />
-      <Journey />
+      <Testimonials />
       <Footer />
     </main>
   );
