@@ -36,14 +36,37 @@
   --space-3xl: 96px;
 
   /* Semantic rhythm tokens (desktop values; overridden for mobile below) */
-  --gutter: var(--space-lg);        /* horizontal page padding */
-  --content-max: 1056px;            /* width of content inside .section (1120 - 2*gutter) */
-  --gap-eyebrow: var(--space-md);   /* eyebrow -> section heading */
-  --gap-heading: var(--space-xl);   /* section heading -> content */
-  --gap-block: var(--space-lg);     /* content block -> content block (within a section) */
-  --gap-tight: var(--space-md);     /* tightly-related blocks (e.g. bento -> capsule rows) */
-  --section-y: var(--space-xl);     /* vertical padding of a .section */
-  --page-top: 200px;                /* top padding on the first section of a page (clears fixed nav) */
+  --gutter: var(--space-lg);
+  /* horizontal page padding */
+  --content-max: 1056px;
+  /* width of content inside .section (1120 - 2*gutter) */
+  --gap-eyebrow: var(--space-md);
+  /* eyebrow -> section heading */
+  --gap-heading: var(--space-xl);
+  /* section heading -> content */
+  --gap-block: var(--space-lg);
+  /* content block -> content block (within a section) */
+  --gap-tight: var(--space-md);
+  /* tightly-related blocks (e.g. bento -> capsule rows) */
+  --section-y: var(--space-xl);
+  /* vertical padding of a .section */
+  --page-top: 200px;
+  /* top padding on the first section of a page (clears fixed nav) */
+
+  /* ===========================================================================
+     HEADING SCALE
+     Three levels, one family (inherited from the body's Inter), fluid sizes so
+     every section title stays identical across breakpoints.
+     h1 hero 46px -> h2 section -> h3 card title -> 13px eyebrow label.
+     =========================================================================== */
+  --fs-section: clamp(24px, 3.6vw, 40px);
+  /* section h2 */
+  --fs-card-title: clamp(20px, 2.1vw, 26px);
+  /* card h3 */
+  --lh-heading: 1.2;
+  --lh-card-title: 1.25;
+  --ls-heading: -0.02em;
+  --ls-card-title: -0.01em;
 }
 
 * {
@@ -544,7 +567,9 @@ html.hover-active .custom-cursor {
   color: var(--ink);
   border: 1px solid var(--ink);
   border-radius: 999px;
-  font: 500 13px/1.2 var(--font-sans);
+  font-size: 13px;
+  font-weight: 500;
+  line-height: 1.2;
   letter-spacing: 0;
 }
 
@@ -571,15 +596,49 @@ html.hover-active .custom-cursor {
 }
 
 /* =============================================================================
-   PROJECT CARDS
+   HEADING SCALE
+   Every section title is a peer: same family, size, weight and rhythm. The
+   hierarchy comes from the scale (hero -> section -> card), not per-section
+   font sizes. Family is inherited so headings match the body's Inter.
    ============================================================================= */
 
 .featured h2,
+.about-preview-heading,
+.process h2,
+.skills h2,
+.testimonials h2,
+.footer-heading h2 {
+  font-family: inherit;
+  font-size: var(--fs-section);
+  font-weight: 400;
+  line-height: var(--lh-heading);
+  letter-spacing: var(--ls-heading);
+}
+
+.project-info h3,
+.process-card-title,
+.skill-card-content h3 {
+  font-family: inherit;
+  font-size: var(--fs-card-title);
+  font-weight: 600;
+  line-height: var(--lh-card-title);
+  letter-spacing: var(--ls-card-title);
+}
+
+/* =============================================================================
+   PROJECT CARDS
+   ============================================================================= */
+
 .page-head h1 {
   font-size: 48px;
   font-family: 'Manrope', sans-serif;
   font-weight: 400;
   letter-spacing: 0px;
+  margin: 0 auto var(--gap-heading);
+  text-align: center;
+}
+
+.featured h2 {
   margin: 0 auto var(--gap-heading);
   text-align: center;
 }
@@ -653,8 +712,6 @@ html.hover-active .custom-cursor {
 }
 
 .project-info h3 {
-  font-size: 26px;
-  font-weight: 800;
   margin: 0 0 12px;
   color: var(--ink);
 }
@@ -698,11 +755,6 @@ html.hover-active .custom-cursor {
 
 .about-preview-heading {
   grid-column: 1 / -1;
-  font-size: 48px;
-  font-family: 'Manrope', sans-serif;
-  font-weight: 400;
-  letter-spacing: 0px;
-  line-height: 1.25;
   margin: 0 auto var(--gap-heading);
   text-align: center;
 }
@@ -791,9 +843,6 @@ html.hover-active .custom-cursor {
 
 }
 
-.process h2,
-.skills h2,
-.testimonials h2,
 .about-hero h1,
 .resume h1,
 .contact h1 {
@@ -836,9 +885,6 @@ html.hover-active .custom-cursor {
 }
 
 .process h2 {
-  font-size: 52px;
-  letter-spacing: -1.5px;
-  line-height: 1.15;
   margin: 0 0 var(--space-sm);
 }
 
@@ -918,11 +964,6 @@ html.hover-active .custom-cursor {
 }
 
 .process-card-title {
-  font-family: 'DM Sans', sans-serif;
-  font-size: 31px;
-  font-weight: 500;
-  letter-spacing: -0.93px;
-  line-height: 38.7px;
   text-align: left;
   color: rgb(10, 10, 10);
   margin: 24px 0 0;
@@ -1042,10 +1083,6 @@ html.hover-active .custom-cursor {
 }
 
 .skill-card-content h3 {
-  font-family: 'DM Sans', sans-serif;
-  font-size: 22px;
-  font-weight: 700;
-  line-height: 1.2;
   margin: 0;
   color: var(--ink);
   text-align: left;
@@ -1175,78 +1212,134 @@ html.hover-active .custom-cursor {
 
 /* =============================================================================
    TESTIMONIALS
-   One ink "lead" panel carries the boldness; two quiet cards support it.
+   Two opposing marquee rows of quiet cards — light fill, indigo quote mark,
+   bold ink quote, and an avatar/name/role footer.
    ============================================================================= */
 
 .testimonials {
-  background: #f1f4ee;
+  --t-accent: var(--lime);
+  --t-card: var(--ink);
+  --t-text: var(--paper);
+  --t-muted: rgba(252, 252, 250, 0.62);
+  --t-card-w: 460px;
+  --t-card-h: 320px;
+  --t-card-gap: var(--space-lg);
+
+  background: var(--paper);
   max-width: none;
-  padding-left: max(var(--gutter), calc((100% - var(--content-max)) / 2));
-  padding-right: max(var(--gutter), calc((100% - var(--content-max)) / 2));
+  padding-top: var(--section-y);
+  padding-bottom: var(--section-y);
+  overflow: hidden;
 }
 
 .testimonials-head {
+  max-width: 1120px;
+  margin: 0 auto;
+  padding-inline: var(--gutter);
   text-align: center;
 }
 
-.testimonials-grid {
-  display: grid;
-  grid-template-columns: 1.15fr 1fr;
-  gap: var(--space-md);
-  align-items: stretch;
-}
-
-.testimonials-side {
-  display: grid;
-  gap: var(--space-md);
-}
-
-.testimonial {
-  position: relative;
-  margin: 0;
+/* Two rows drifting in opposite directions; the mask softens both edges. */
+.testimonials-marquee {
   display: flex;
   flex-direction: column;
   gap: var(--space-md);
-  padding: var(--space-lg);
-  background: #fff;
-  border: 1px solid var(--gray);
-  border-radius: 20px;
+  margin-top: var(--gap-heading);
+  -webkit-mask-image: linear-gradient(90deg, transparent 0, #000 28px, #000 calc(100% - 28px), transparent 100%);
+  mask-image: linear-gradient(90deg, transparent 0, #000 28px, #000 calc(100% - 28px), transparent 100%);
+}
+
+.testimonials-row {
   overflow: hidden;
+}
+
+.testimonials-track {
+  display: flex;
+  width: max-content;
+  animation: testimonialsScroll 68s linear infinite;
+  will-change: transform;
+}
+
+/* Reverse row drifts left→right; the seam stays hidden because every copy is identical */
+.testimonials-track.reverse {
+  animation-direction: reverse;
+}
+
+@keyframes testimonialsScroll {
+  from {
+    transform: translateX(0);
+  }
+
+  /* 100% / 4 repeats = one group; the next copy lands exactly where this one started */
+  to {
+    transform: translateX(-25%);
+  }
+}
+
+/* Uniform right margin (not flex gap) keeps every card's footprint identical */
+.testimonial {
+  flex: 0 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
+  width: var(--t-card-w);
+  min-height: var(--t-card-h);
+  margin: 0 var(--t-card-gap) 0 0;
+  padding: var(--space-lg);
+  background: var(--t-card);
+  border: 0;
+  border-radius: 26px;
+  overflow: hidden;
+}
+
+.testimonial-top {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: var(--space-sm);
+}
+
+.testimonial-mark {
+  flex-shrink: 0;
+  width: 40px;
+  height: 30px;
+  color: var(--t-accent);
 }
 
 .testimonial-stars {
   display: flex;
-  gap: 3px;
-  color: var(--ink);
+  gap: 2px;
+  color: var(--t-accent);
   line-height: 0;
 }
 
 .testimonial-quote {
   margin: 0;
   font-family: 'DM Sans', sans-serif;
-  font-size: 16px;
-  line-height: 1.65;
-  letter-spacing: -0.01em;
-  color: #3d4653;
+  font-size: 20px;
+  font-weight: 600;
+  line-height: 1.5;
+  letter-spacing: -0.015em;
+  color: var(--t-text);
 }
 
 .testimonial-person {
   display: flex;
   align-items: center;
-  gap: var(--space-xs);
+  gap: 14px;
   margin-top: auto;
 }
 
 .testimonial-avatar {
   flex-shrink: 0;
-  width: 44px;
-  height: 44px;
+  width: 48px;
+  height: 48px;
   border-radius: 50%;
   display: grid;
   place-items: center;
-  background: var(--ink);
-  color: var(--lime);
-  font: 700 14px/1 'DM Sans', sans-serif;
+  background: var(--lime);
+  color: var(--ink);
+  font: 700 15px/1 'DM Sans', sans-serif;
   letter-spacing: 0.02em;
   overflow: hidden;
 }
@@ -1260,56 +1353,17 @@ html.hover-active .custom-cursor {
 .testimonial-meta {
   display: flex;
   flex-direction: column;
-  gap: 2px;
+  gap: 3px;
 }
 
 .testimonial-meta b {
-  font: 700 15px/1.3 'DM Sans', sans-serif;
-  color: var(--ink);
+  font: 700 17px/1.25 'DM Sans', sans-serif;
+  color: var(--t-text);
 }
 
 .testimonial-meta span {
-  font-size: 13px;
-  color: #5d6570;
-}
-
-/* Lead panel: inverted surface, the section's single bold moment */
-.testimonial-lead {
-  background: var(--ink);
-  border-color: var(--ink);
-  padding: var(--space-xl) var(--space-lg);
-  justify-content: center;
-}
-
-.testimonial-lead .testimonial-stars {
-  color: var(--lime);
-}
-
-.testimonial-lead .testimonial-quote {
-  font-family: 'Manrope', sans-serif;
-  font-size: 30px;
-  line-height: 1.45;
-  letter-spacing: -0.02em;
-  color: var(--paper);
-}
-
-.testimonial-lead .testimonial-avatar {
-  background: var(--lime);
-  color: var(--ink);
-}
-
-.testimonial-lead .testimonial-meta b {
-  color: var(--paper);
-}
-
-.testimonial-lead .testimonial-meta span {
-  color: #9aa8bd;
-}
-
-.testimonial-lead .testimonial-person {
-  width: 100%;
-  border-top: 1px solid rgba(255, 255, 255, 0.14);
-  padding-top: var(--space-md);
+  font-size: 14px;
+  color: var(--t-muted);
 }
 
 /* =============================================================================
@@ -1338,11 +1392,6 @@ html.hover-active .custom-cursor {
 }
 
 .footer-heading h2 {
-  font-family: 'Manrope', sans-serif;
-  font-size: clamp(34px, 4.4vw, 56px);
-  font-weight: 600;
-  letter-spacing: -0.02em;
-  line-height: 1.15;
   margin: 0;
 }
 
@@ -2427,7 +2476,6 @@ button {
     padding: var(--section-y) var(--gutter);
   }
 
-  .featured h2,
   .page-head h1 {
     font-size: 24px;
     margin-bottom: var(--gap-heading);
@@ -2453,7 +2501,6 @@ button {
   }
 
   .project-info h3 {
-    font-size: 20px;
     margin-bottom: 8px;
   }
 
@@ -2491,8 +2538,6 @@ button {
   }
 
   .about-preview-heading {
-    font-size: 24px;
-    line-height: 1.35;
     margin-bottom: var(--gap-heading);
   }
 
@@ -2505,9 +2550,6 @@ button {
     object-position: center 15% !important;
   }
 
-  .process h2,
-  .skills h2,
-  .testimonials h2,
   .about-hero h1,
   .resume h1,
   .contact h1 {
@@ -2534,6 +2576,7 @@ button {
 
   .about-preview-content .about-work-btn {
     width: 100%;
+    margin-left: 0;
     text-align: center;
   }
 
@@ -2557,11 +2600,6 @@ button {
 
   .process-card-content {
     padding: 22px 20px;
-  }
-
-  .process-card-title {
-    font-size: 24px;
-    line-height: 1.3;
   }
 
   .process-banner {
@@ -2633,16 +2671,18 @@ button {
     margin-right: var(--space-2xs);
   }
 
-  .testimonials-grid {
-    grid-template-columns: 1fr;
+  .testimonials {
+    --t-card-w: 380px;
+    --t-card-h: 305px;
+    --t-card-gap: var(--space-md);
   }
 
-  .testimonial-lead {
-    padding: var(--space-lg) var(--space-md);
+  .testimonial-quote {
+    font-size: 18px;
   }
 
-  .testimonial-lead .testimonial-quote {
-    font-size: 20px;
+  .testimonials-track {
+    animation-duration: 54s;
   }
 
   .footer {
@@ -2787,7 +2827,7 @@ button {
   }
 
   .hero h1 {
-    font-size: 28px;
+    font-size: clamp(24px, 7.2vw, 28px);
     line-height: 1.4;
   }
 
@@ -2828,12 +2868,7 @@ button {
     font-size: 14px;
   }
 
-  .featured h2,
   .page-head h1 {
-    font-size: 22px;
-  }
-
-  .about-preview-heading {
     font-size: 22px;
   }
 
@@ -2881,10 +2916,6 @@ button {
     height: auto;
   }
 
-  .process-card-title {
-    font-size: 20px;
-  }
-
   .process-card-num {
     font-size: 22px;
   }
@@ -2893,20 +2924,12 @@ button {
     font-size: 13px;
   }
 
-  .process h2 {
-    font-size: 30px;
-  }
-
   .skills-header {
     margin-bottom: var(--gap-heading);
   }
 
   .skill-card {
     padding: 20px;
-  }
-
-  .skill-card-content h3 {
-    font-size: 19px;
   }
 
   .skill-card-content p {
@@ -2927,16 +2950,23 @@ button {
     height: 110px;
   }
 
+  .testimonials {
+    --t-card-w: min(322px, calc(100vw - 40px));
+    --t-card-h: 295px;
+  }
+
   .testimonial {
     padding: var(--space-md);
+    border-radius: 22px;
   }
 
-  .testimonial-lead {
-    padding: var(--space-lg) var(--space-md);
+  .testimonial-quote {
+    font-size: 17px;
   }
 
-  .testimonial-lead .testimonial-quote {
-    font-size: 19px;
+  .testimonial-avatar {
+    width: 42px;
+    height: 42px;
   }
 
   .about-hero-photo {
@@ -2979,7 +3009,8 @@ button {
     transform: translateX(-50%) !important;
   }
 
-  .skills-capsules-track {
+  .skills-capsules-track,
+  .testimonials-track {
     animation: none !important;
   }
 }
