@@ -8,7 +8,20 @@ export function Footer() {
       <div className="footer-top">
         <div className="footer-heading">
           <h2>
-            <span className="footer-heading-light">Lets design</span>
+            <span className="footer-heading-light">
+              Let’s{' '}
+              <span className="footer-word" aria-hidden="true">
+                <span className="footer-word-track">
+                  <span>design</span>
+                  <span>build</span>
+                  <span>create</span>
+                  <span>make</span>
+                  {/* Duplicate of the first word keeps the loop seamless */}
+                  <span>design</span>
+                </span>
+              </span>
+              <span className="footer-word-sr">design</span>
+            </span>
             <span className="footer-heading-muted">incredible work together.</span>
           </h2>
         </div>
@@ -91,8 +104,13 @@ export function Footer() {
       </div>
 
       <div className="footer-bottom">
-        <Link href="/contact" className="footer-touch-banner">
-          Get in touch
+        <Link href="/contact" className="footer-touch-banner" aria-label="Get in touch">
+          <span className="footer-touch-sharp" aria-hidden="true">
+            Get in touch
+          </span>
+          <span className="footer-touch-glass" aria-hidden="true">
+            Get in touch
+          </span>
         </Link>
       </div>
     </footer>
