@@ -1391,8 +1391,11 @@ html.hover-active .custom-cursor {
   margin: 0 0 42px;
 }
 
+/* The footer statement is display type, intentionally larger than the
+   shared section-heading scale used by the rest of the page. */
 .footer-heading h2 {
   margin: 0;
+  font-size: clamp(36px, 4.4vw, 60px);
 }
 
 .footer-heading-light {
@@ -1403,6 +1406,77 @@ html.hover-active .custom-cursor {
 .footer-heading-muted {
   display: block;
   color: #6e6e6e;
+}
+
+/* Rotating word — "Lets design / build / create / make"
+   The track is duplicated at the end so the upward loop is seamless. */
+.footer-heading-light {
+  white-space: nowrap;
+}
+
+.footer-word {
+  display: inline-block;
+  height: 1.2em;
+  overflow: hidden;
+  vertical-align: bottom;
+}
+
+.footer-word-track {
+  display: flex;
+  flex-direction: column;
+  animation: footerWordRoll 10s cubic-bezier(0.65, 0, 0.35, 1) infinite;
+  will-change: transform;
+}
+
+/* 1.3em = the 1.2em word line + a 0.1em gap; the gap lets the outgoing
+   descender clear the window before the next word settles into place. */
+.footer-word-track>span {
+  display: block;
+  height: 1.3em;
+  line-height: 1.2;
+  white-space: nowrap;
+}
+
+/* Hold each word, then slide it up and bring the next one in from below */
+@keyframes footerWordRoll {
+
+  0%,
+  9% {
+    transform: translateY(0);
+  }
+
+  17%,
+  34% {
+    transform: translateY(-20%);
+  }
+
+  42%,
+  59% {
+    transform: translateY(-40%);
+  }
+
+  67%,
+  84% {
+    transform: translateY(-60%);
+  }
+
+  92%,
+  100% {
+    transform: translateY(-80%);
+  }
+}
+
+/* Keeps the heading's accessible name stable while the visual word rotates */
+.footer-word-sr {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+  border: 0;
 }
 
 .footer-grid {
@@ -1496,6 +1570,9 @@ html.hover-active .custom-cursor {
 }
 
 .footer-touch-banner {
+  position: relative;
+  display: grid;
+  place-items: center;
   font-family: 'Manrope', sans-serif;
   font-size: clamp(72px, 12.8vw, 168px);
   font-weight: 700;
@@ -1503,13 +1580,31 @@ html.hover-active .custom-cursor {
   line-height: 0.85;
   text-align: center;
   white-space: nowrap;
-  background: linear-gradient(180deg, #dffe7e 0%, #5d7e23 100%);
+  text-decoration: none;
+  transition: filter 0.3s ease, transform 0.3s ease;
+}
+
+/* Two stacked copies of the wordmark: a crisp lime top, a frosted white base */
+.footer-touch-sharp,
+.footer-touch-glass {
+  grid-area: 1 / 1;
+  display: block;
+  background-clip: text;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
-  background-clip: text;
-  text-decoration: none;
-  display: block;
-  transition: filter 0.3s ease, transform 0.3s ease;
+}
+
+.footer-touch-sharp {
+  background-image: linear-gradient(180deg, #dffe7e 0%, #9ccb45 62%, #5d7e23 100%);
+  -webkit-mask-image: linear-gradient(180deg, #000 0%, #000 48%, rgba(0, 0, 0, 0.6) 56%, rgba(0, 0, 0, 0.2) 66%, rgba(0, 0, 0, 0.12) 100%);
+  mask-image: linear-gradient(180deg, #000 0%, #000 48%, rgba(0, 0, 0, 0.6) 56%, rgba(0, 0, 0, 0.2) 66%, rgba(0, 0, 0, 0.12) 100%);
+}
+
+.footer-touch-glass {
+  background-image: linear-gradient(180deg, rgba(252, 252, 250, 0) 46%, rgba(252, 252, 250, 0.55) 55%, rgba(252, 252, 250, 0.97) 64%, rgba(252, 252, 250, 0.95) 100%);
+  filter: blur(0.038em) saturate(1.05);
+  -webkit-mask-image: linear-gradient(180deg, transparent 46%, #000 64%, #000 100%);
+  mask-image: linear-gradient(180deg, transparent 46%, #000 64%, #000 100%);
 }
 
 .footer-touch-banner:hover {
@@ -2686,7 +2781,35 @@ button {
   }
 
   .footer {
-    padding: var(--space-lg) var(--gutter) 40px;
+    height: auto;
+    padding: var(--space-lg) var(--gutter);
+  }
+
+  .footer-heading {
+    margin-bottom: var(--space-md);
+  }
+
+  .footer-heading h2 {
+    font-size: clamp(32px, 8.5vw, 40px);
+  }
+
+  .footer-grid {
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-md);
+  }
+
+  /* Email is the longest line, so give it the full row */
+  .footer-grid > .footer-col:first-child {
+    grid-column: 1 / -1;
+  }
+
+  .footer-divider {
+    margin: var(--space-md) 0 var(--space-sm);
+  }
+
+  .footer-bottom {
+    margin-top: var(--space-xl);
+    margin-bottom: 0;
   }
 
   .footer-copy p {
@@ -2898,6 +3021,19 @@ button {
     animation-duration: 14s;
   }
 
+  .footer-grid {
+    grid-template-columns: 1fr;
+    gap: var(--space-sm);
+  }
+
+  .footer-grid > .footer-col:first-child {
+    grid-column: auto;
+  }
+
+  .footer-touch-banner {
+    font-size: clamp(44px, 15vw, 64px);
+  }
+
   .footer-copy p {
     font-size: 28px;
     letter-spacing: -1.5px;
@@ -2952,21 +3088,26 @@ button {
 
   .testimonials {
     --t-card-w: min(322px, calc(100vw - 40px));
-    --t-card-h: 295px;
+    --t-card-h: 238px;
+  }
+
+  .testimonials-marquee {
+    gap: var(--space-sm);
   }
 
   .testimonial {
-    padding: var(--space-md);
-    border-radius: 22px;
+    padding: 20px;
+    border-radius: 20px;
   }
 
   .testimonial-quote {
-    font-size: 17px;
+    font-size: 15px;
+    line-height: 1.45;
   }
 
   .testimonial-avatar {
-    width: 42px;
-    height: 42px;
+    width: 40px;
+    height: 40px;
   }
 
   .about-hero-photo {
@@ -3010,7 +3151,8 @@ button {
   }
 
   .skills-capsules-track,
-  .testimonials-track {
+  .testimonials-track,
+  .footer-word-track {
     animation: none !important;
   }
 }
