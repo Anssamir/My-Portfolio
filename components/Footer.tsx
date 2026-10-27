@@ -105,12 +105,7 @@ export function Footer() {
 
       <div className="footer-bottom">
         <Link href="/contact" className="footer-touch-banner" aria-label="Get in touch">
-          <span className="footer-touch-sharp" aria-hidden="true">
-            Get in touch
-          </span>
-          <span className="footer-touch-glass" aria-hidden="true">
-            Get in touch
-          </span>
+          Get in touch
         </Link>
       </div>
     </footer>
