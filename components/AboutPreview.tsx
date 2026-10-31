@@ -3,6 +3,7 @@
 import Link from 'next/link';
 import Image from 'next/image';
 import { assets } from '@/data/assets';
+import { AboutDescription } from '@/components/AboutDescription';
 
 export function AboutPreview() {
   return (
@@ -16,11 +17,7 @@ export function AboutPreview() {
       </div>
       <div className="about-preview-content reveal">
         <div className="about-preview-content-body">
-          <p>I&apos;m Anas Amir an AI Product Engineer with <strong>2+ years of experience ,</strong> and someone who’s genuinely curious about how people, products, and technology come together.</p>
-          <p>I enjoy taking messy problems, asking the right questions, and turning them into intelligent products that feel simple and intuitive. I’m fascinated by what AI can make possible, but
-            I care just as much about making it useful, accessible, and meaningful. From shaping the experience to building the technology behind it, I enjoy taking ideas from early concepts to products that genuinely solve problems.</p>
-          <p>Outside of work, I love traveling, going on long tours, exploring new places, and trying different kinds of food. I’m always drawn to new experiences and unfamiliar surroundings
-            they keep me curious, open-minded, and constantly inspired.</p>
+          <AboutDescription />
         </div>
         <p className="about-preview-quote reveal">Exploring what AI can do. Building what people need.</p>
         <Link className="about-work-btn" href="/contact">Let&apos;s Work Together</Link>

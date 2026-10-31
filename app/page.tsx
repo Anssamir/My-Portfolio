@@ -1,10 +1,9 @@
 'use client';
 
 import { useReveal } from '@/hooks/useReveal';
-import { projects } from '@/data/projects';
 import { CTA } from '@/components/CTA';
 import { UpworkButton } from '@/components/UpworkButton';
-import { ProjectCard } from '@/components/ProjectCard';
+import { WorkShowcase } from '@/components/WorkShowcase';
 import { AboutPreview } from '@/components/AboutPreview';
 import { Process } from '@/components/Process';
 import { Skills } from '@/components/Skills';
@@ -66,15 +65,7 @@ export default function Home() {
           </svg>
         </a>
       </section>
-      <section id="featured-work" className="section featured">
-        <div className="eyebrow">Featured Work</div>
-        <h2>Turning AI complexity into products people actually understand.</h2>
-        <div className="project-list">
-          {projects.map((p, i) => (
-            <ProjectCard p={p} index={i} key={p.slug} />
-          ))}
-        </div>
-      </section>
+      <WorkShowcase id="featured-work" />
       <AboutPreview />
       <Process />
       <Skills />

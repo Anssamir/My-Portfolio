@@ -8,7 +8,6 @@ export function CustomHoverCursor() {
   const cursorRef = useRef<HTMLDivElement>(null);
   const [visible, setVisible] = useState(false);
   const pathname = usePathname();
-  const isHome = pathname === '/';
   const target = useRef({ x: 0, y: 0 });
   const current = useRef({ x: 0, y: 0 });
   const hasMoved = useRef(false);
@@ -71,8 +70,6 @@ export function CustomHoverCursor() {
       document.documentElement.classList.remove('hover-active');
     };
   }, [pathname]);
-
-  if (!isHome) return null;
 
   return (
     <div
