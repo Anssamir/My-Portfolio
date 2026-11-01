@@ -75,7 +75,9 @@
 
 html {
   scroll-behavior: smooth;
-  overflow-x: hidden;
+  /* `clip` (not `hidden`) avoids creating a scroll container, which would
+     break the sticky stacking on the work page. */
+  overflow-x: clip;
 }
 
 body {
@@ -83,7 +85,7 @@ body {
   background: var(--paper);
   color: var(--ink);
   font-family: var(--font-sans);
-  overflow-x: hidden;
+  overflow-x: clip;
 }
 
 a {
@@ -606,6 +608,7 @@ html.hover-active .custom-cursor {
 .process h2,
 .skills h2,
 .testimonials h2,
+.blog h2,
 .footer-heading h2 {
   font-family: inherit;
   font-size: var(--fs-section);
@@ -1376,6 +1379,142 @@ html.hover-active .custom-cursor {
 }
 
 /* =============================================================================
+   BLOG
+   Three tall editorial cards — monochrome city imagery under a navy gradient
+   with the date, title and excerpt sitting at the bottom. The image eases in
+   on hover for a quiet, immersive feel.
+   ============================================================================= */
+
+.blog {
+  background: var(--paper);
+  scroll-margin-top: 96px;
+}
+
+.blog h2 {
+  margin: 0 auto var(--gap-heading);
+  text-align: center;
+}
+
+.blog-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: var(--space-md);
+}
+
+.blog-card {
+  position: relative;
+  display: block;
+  aspect-ratio: 0.72;
+  overflow: hidden;
+  border-radius: 24px;
+  background: var(--ink);
+  isolation: isolate;
+  transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1),
+    box-shadow 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.blog-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 18px 40px rgba(11, 29, 56, 0.16);
+}
+
+.blog-card:focus-visible {
+  outline: 2px solid var(--lime);
+  outline-offset: 3px;
+}
+
+.blog-card-media {
+  position: absolute;
+  inset: 0;
+}
+
+.blog-card-media img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: grayscale(1) contrast(1.06) brightness(0.86);
+  transform: scale(1.015);
+  transition: transform 1s cubic-bezier(0.16, 1, 0.3, 1),
+    filter 0.8s ease;
+  will-change: transform;
+}
+
+.blog-card:hover .blog-card-media img,
+.blog-card:focus-visible .blog-card-media img {
+  transform: scale(1.065);
+  filter: grayscale(1) contrast(1.08) brightness(0.82);
+}
+
+.blog-card::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  background: linear-gradient(
+    180deg,
+    rgba(11, 29, 56, 0.18) 0%,
+    rgba(11, 29, 56, 0.02) 30%,
+    rgba(11, 29, 56, 0.38) 55%,
+    rgba(11, 29, 56, 0.84) 78%,
+    rgba(11, 29, 56, 0.97) 100%
+  );
+}
+
+.blog-card-content {
+  position: absolute;
+  z-index: 2;
+  inset: auto 0 0;
+  padding: clamp(20px, 2.4vw, 28px);
+  color: var(--paper);
+}
+
+.blog-date {
+  display: block;
+  margin-bottom: 10px;
+  font-size: 13px;
+  font-weight: 400;
+  letter-spacing: 0.01em;
+  color: rgba(252, 252, 250, 0.7);
+}
+
+.blog-title {
+  margin: 0;
+  font-size: clamp(24px, 2.2vw, 30px);
+  font-weight: 500;
+  line-height: 1.08;
+  letter-spacing: -0.03em;
+}
+
+.blog-excerpt {
+  max-width: 34ch;
+  margin: 12px 0 0;
+  font-size: 14px;
+  line-height: 1.5;
+  color: rgba(252, 252, 250, 0.72);
+}
+
+.blog-cta {
+  display: flex;
+  justify-content: center;
+  margin-top: var(--gap-block);
+}
+
+.blog-cta .about-work-btn {
+  margin-top: 0;
+}
+
+/* The blog index shares the same cards but starts below the fixed nav. */
+.blog-page {
+  padding-top: var(--page-top);
+}
+
+.blog-page .blog {
+  padding-top: 0;
+}
+
+/* =============================================================================
    FOOTER
    ============================================================================= */
 
@@ -1636,6 +1775,144 @@ html.hover-active .custom-cursor {
   max-width: 720px;
   font-size: 28px;
   line-height: 1.4;
+}
+
+/* -----------------------------------------------------------------------------
+   WORK SHOWCASE
+   Full-width project cards that stick to the viewport one after another. Each
+   card has a slightly lower sticky top, so the previous card's top edge stays
+   visible as a thin shelf while the next card slides over it.
+   -------------------------------------------------------------------------- */
+
+.work-showcase {
+  background: #f4f4f1;
+  padding: clamp(24px, 4vw, 48px) clamp(16px, 2.6vw, 44px) clamp(80px, 12vh, 160px);
+}
+
+.work-stack {
+  --stack-top: 100px;
+  --stack-offset: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+}
+
+.work-stack-tail {
+  flex: 0 0 auto;
+  height: clamp(120px, 22vh, 260px);
+}
+
+.work-card {
+  --stack-depth: 0;
+  position: sticky;
+  top: calc(var(--stack-top) + var(--stack-index) * var(--stack-offset));
+  z-index: calc(var(--stack-index) + 1);
+  display: grid;
+  grid-template-columns: minmax(0, 0.82fr) minmax(0, 1fr);
+  gap: clamp(28px, 7vw, 120px);
+  height: clamp(460px, min(37vw, 66vh), 700px);
+  padding: clamp(24px, 3vw, 60px);
+  border: 1px solid #e4e4e0;
+  border-radius: clamp(20px, 1.8vw, 32px);
+  background: #ffffff;
+  color: var(--ink);
+  overflow: hidden;
+  transform: scale(calc(1 - var(--stack-depth) * 0.015));
+  transform-origin: top center;
+  transition: transform 700ms cubic-bezier(0.22, 1, 0.36, 1),
+    border-color 300ms ease, box-shadow 300ms ease;
+  box-shadow:
+    0 -8px 24px rgba(11, 29, 56, 0.05),
+    0 24px 60px rgba(11, 29, 56, 0.06);
+  will-change: transform;
+}
+
+.work-card:hover {
+  border-color: #d2d2cc;
+  box-shadow:
+    0 -10px 30px rgba(11, 29, 56, 0.07),
+    0 30px 72px rgba(11, 29, 56, 0.1);
+}
+
+.work-card:focus-visible {
+  outline: 2px solid var(--ink);
+  outline-offset: 4px;
+}
+
+.work-card-content {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  height: 100%;
+}
+
+.work-card-date {
+  margin: 0;
+  font-size: clamp(14px, 1.15vw, 20px);
+  font-weight: 500;
+  line-height: 1.2;
+  letter-spacing: -0.01em;
+  color: #1b1b1b;
+}
+
+.work-card-title {
+  margin: clamp(16px, 2.2vw, 32px) 0 0;
+  font-family: inherit;
+  font-size: clamp(36px, 3.6vw, 64px);
+  font-weight: 700;
+  line-height: 1;
+  letter-spacing: -0.045em;
+  color: #0b0b0b;
+}
+
+.work-card-desc {
+  margin: clamp(18px, 2.2vw, 32px) 0 0;
+  font-size: clamp(15px, 1.35vw, 26px);
+  line-height: 1.55;
+  letter-spacing: -0.015em;
+  color: #1b1b1b;
+}
+
+.work-card-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: clamp(8px, 0.9vw, 14px);
+  margin: auto 0 0;
+  padding: clamp(24px, 3vw, 44px) 0 0;
+  list-style: none;
+}
+
+.work-card-tags li {
+  padding: 0.8em 1.35em;
+  border: 1px solid #dededb;
+  border-radius: 999px;
+  background: #ffffff;
+  color: #1b1b1b;
+  font-size: clamp(13px, 1.1vw, 18px);
+  font-weight: 500;
+  line-height: 1.2;
+  white-space: nowrap;
+}
+
+.work-card-media {
+  position: relative;
+  height: 100%;
+  min-height: 0;
+  overflow: hidden;
+  border-radius: clamp(12px, 1.1vw, 20px);
+  background: #0c0c0c;
+}
+
+.work-card-media img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 900ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.work-card:hover .work-card-media img {
+  transform: scale(1.035);
 }
 
 /* =============================================================================
@@ -2401,7 +2678,8 @@ button {
   }
 }
 
-.project-card {
+.project-card,
+.work-card {
   cursor: none;
 }
 
@@ -2410,7 +2688,8 @@ button {
     display: none;
   }
 
-  .project-card {
+  .project-card,
+  .work-card {
     cursor: pointer;
   }
 }
@@ -2429,6 +2708,80 @@ button {
   .project-list {
     grid-template-columns: 1fr;
     margin: 0 20px;
+  }
+
+  .blog-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 900px) {
+  .work-showcase {
+    padding: 20px 16px 120px;
+  }
+
+  .work-stack {
+    --stack-top: 84px;
+    --stack-offset: 10px;
+    gap: 20px;
+  }
+
+  .work-stack-tail {
+    height: clamp(140px, 25vh, 260px);
+  }
+
+  .work-card {
+    grid-template-columns: 1fr;
+    grid-template-rows: auto minmax(0, 1fr);
+    height: clamp(480px, min(max(540px, 75vw), calc(100vh - var(--stack-top) - 3 * var(--stack-offset) - 16px)), 640px);
+    padding: 20px;
+    gap: 20px;
+    border-radius: 22px;
+  }
+
+  .work-card-content {
+    height: auto;
+  }
+
+  .work-card-date {
+    font-size: 13px;
+  }
+
+  .work-card-title {
+    margin-top: 14px;
+    font-size: clamp(28px, 5.4vw, 44px);
+  }
+
+  .work-card-desc {
+    margin-top: 16px;
+    font-size: clamp(14px, 1.9vw, 17px);
+  }
+
+  .work-card-tags {
+    margin-top: 20px;
+    padding-top: 0;
+    gap: 8px;
+  }
+
+  .work-card-tags li {
+    padding: 8px 14px;
+    font-size: 12px;
+  }
+}
+
+/* Between the mobile nav and the full desktop layout the nav is still the
+   desktop height, so the cards need to sit a little lower. */
+@media (min-width: 721px) and (max-width: 900px) {
+  .work-stack {
+    --stack-top: 96px;
+    --stack-offset: 8px;
+  }
+}
+
+@media (min-width: 901px) and (max-height: 700px) {
+  .work-stack {
+    --stack-top: 96px;
+    --stack-offset: 12px;
   }
 }
 
@@ -2529,6 +2882,20 @@ button {
 
   .section {
     padding: var(--section-y) var(--gutter);
+  }
+
+  .blog-grid {
+    grid-template-columns: 1fr;
+    max-width: 420px;
+    margin-inline: auto;
+  }
+
+  .blog-card {
+    border-radius: 20px;
+  }
+
+  .blog-card:hover {
+    transform: none;
   }
 
   .page-head h1 {
@@ -3077,6 +3444,34 @@ button {
   }
 }
 
+/* Tighten the pill navigation on the smallest phones so the brand and links
+   don't overlap. */
+@media (max-width: 360px) {
+  .nav {
+    padding: 6px 8px;
+  }
+
+  .nav nav {
+    gap: 8px;
+    font-size: 10px;
+  }
+
+  .brand {
+    gap: 6px;
+    font-size: 10px;
+  }
+
+  .brand-avatar {
+    width: 40px;
+    height: 40px;
+  }
+
+  .resume-pill {
+    padding: 5px 6px;
+    font-size: 10px;
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
 
   .sweep,
@@ -3099,5 +3494,14 @@ button {
   .testimonials-track,
   .footer-word-track {
     animation: none !important;
+  }
+
+  .work-card {
+    transform: none !important;
+    transition: none !important;
+  }
+
+  .work-card-media img {
+    transition: none !important;
   }
 }
