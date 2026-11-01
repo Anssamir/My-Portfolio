@@ -7,6 +7,9 @@ export interface Project {
   image: string;
   tags: string[];
   description: string;
+  /* Optional long-form copy used by the full-width work cards */
+  workDescription?: string;
+  workTags?: string[];
 }
 
 export const projects: Project[] = [
@@ -17,6 +20,8 @@ export const projects: Project[] = [
     image: assets.dansk,
     tags: ['GenAI', 'Conversational UX', 'Figma'],
     description: 'An internal GenAI tool for banking staff. Speeds up query resolution with a smarter, conversational AI experience.',
+    workDescription: 'An internal GenAI tool built for frontline banking staff at a Danish bank. Designed to speed up customer query resolution, reduce tool-switching, and create a smarter, conversational AI experience tailored for banking operations.',
+    workTags: ['GenAI Banking', 'UX Conversational Design', 'Figma'],
   },
   {
     slug: 'nissan',

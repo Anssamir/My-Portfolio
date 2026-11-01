@@ -8,6 +8,7 @@ import { AboutPreview } from '@/components/AboutPreview';
 import { Process } from '@/components/Process';
 import { Skills } from '@/components/Skills';
 import { Testimonials } from '@/components/Testimonials';
+import { BlogSection } from '@/components/BlogSection';
 import { Footer } from '@/components/Footer';
 
 export default function Home() {
@@ -70,6 +71,7 @@ export default function Home() {
       <Process />
       <Skills />
       <Testimonials />
+      <BlogSection />
       <Footer />
     </main>
   );
