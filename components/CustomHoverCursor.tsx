@@ -43,7 +43,7 @@ export function CustomHoverCursor() {
 
     const onEnter = (e: Event) => {
       const el = e.target as HTMLElement;
-      if (el?.closest?.('.project-card')) {
+      if (el?.closest?.('.project-card, .work-card')) {
         setVisible(true);
         document.documentElement.classList.add('hover-active');
       }
@@ -51,7 +51,7 @@ export function CustomHoverCursor() {
 
     const onLeave = (e: Event) => {
       const el = e.target as HTMLElement;
-      if (el?.closest?.('.project-card')) {
+      if (el?.closest?.('.project-card, .work-card')) {
         setVisible(false);
         document.documentElement.classList.remove('hover-active');
       }
